@@ -1,0 +1,6 @@
+# VSCOM CANUSB module
+ACTION=="add", ENV{SUBSYSTEM}=="tty", ENV{ID_MODEL}=="VScom_USB-CAN_Plus", RUN+="/usr/bin/logger [udev] VSCOM CANUSB detected - start usb-can@$kernel.service", RUN+="/bin/systemctl --no-block start usb-can@$kernel.service"
+
+ACTION=="remove", ENV{SUBSYSTEM}=="tty", ENV{ID_MODEL}=="VScom_USB-CAN_Plus", RUN+="/usr/bin/logger [udev] VSCOM CANUSB removed - stop usb-can@$kernel.service!", RUN+="/bin/systemctl stop usb-can@$kernel.service"
+
+ACTION=="add", ENV{SUBSYSTEM}=="net", ENV{INTERFACE}=="slcan*", RUN+="/usr/bin/logger [udev] VSCOM CANUSB - up $kernel", RUN+="/bin/systemctl restart usb-can-up@$kernel.service"

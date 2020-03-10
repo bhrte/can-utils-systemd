@@ -1,0 +1,9 @@
+[Unit]
+Description=VSCOM CAN %i
+
+[Service]
+Type=forking
+RemainAfterExit=true
+ExecStart=/bin/slcand -o -c -f -s4 %i
+ExecStop=/usr/bin/pkill -f "slcand.*%i"
+Restart=no
