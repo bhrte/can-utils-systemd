@@ -4,5 +4,5 @@ Description=VSCOM CAN up %i
 [Service]
 Type=oneshot
 RemainAfterExit=true
-ExecStart=/sbin/ip link set %i up
+ExecStart=/sbin/ip link set up %i
 Restart=no
